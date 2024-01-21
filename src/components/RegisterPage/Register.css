@@ -1,0 +1,19 @@
+.register-container {
+    display: flex;
+    background-color: rgba(91, 134, 229, 0.3);
+    width: 100%; /* 전체 화면 너비 */
+    height: 100vh; /* 전체 화면 높이 */
+}
+
+.left-section {
+    flex: 4; /* 전체 가로의 40%를 차지 */
+    height: 100%; /* 부모 컨테이너에 대한 높이를 100%로 설정 */
+}
+
+.right-section {
+    background-color: #FFFFFF; /* 오른쪽 하얀 부분 배경색 */
+    flex: 6; /* 전체 가로의 60%를 차지 */
+    height: 100%; /* 부모 컨테이너에 대한 높이를 100%로 설정 */
+    border-top-left-radius: 50px; /* 왼쪽 위 코너 radius */
+    border-bottom-left-radius: 50px; /* 왼쪽 아래 코너 radius */
+}
