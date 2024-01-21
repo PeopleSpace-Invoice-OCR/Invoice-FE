@@ -55,3 +55,8 @@
   font-family: "p-reg";
   src: url('../public/fonts/Pretendard-Regular.woff');
 }
+
+@font-face {
+  font-family: "p-light";
+  src: url('../public/fonts/Pretendard-Light.woff');
+}
