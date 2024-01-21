@@ -3,16 +3,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
-import Main from './components/pages/Main';
+import MainPage from './pages/MainPage';
 
 function App() {
   return (
     <Router>
-      <Header/>
-      <Routes>
-        <Route path='/' element={<Main />} />
-      </Routes>
-      <Footer/>
+      <Header />
+        <Routes>
+          <Route path='/' element={<MainPage />} />
+        </Routes>
+        <Footer />
     </Router>
   );
 }

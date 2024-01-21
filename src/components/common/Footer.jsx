@@ -13,11 +13,11 @@ const FooterWrapper = styled.section`
   position: fixed;
   display: flex;
   width: 100%;
-  height: 40px;
+  height: 4vh;
   bottom: 0;
   padding: 10px;
   background-color: #ffffff;
-  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
   align-items: center;
 
   .logo {
