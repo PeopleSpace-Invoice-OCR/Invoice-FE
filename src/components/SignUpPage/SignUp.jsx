@@ -17,6 +17,10 @@ export const LeftSection = styled.div`
 `
 
 export const RightSection = styled.div`
+    display: flex; /* RightSection도 flex 컨테이너로 변경 */
+    flex-direction: column; /* 아이템들을 수직 방향으로 배치 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
     background-color: #FFFFFF;
     flex: 6;
     height: 100%;
@@ -50,6 +54,71 @@ export const Logo = styled.div`
   width: 300px;
 `;
 
+export const SignUpText = styled.div`
+  font-size: 35px;
+  font-family: "p-extrabold";
+  color: black;
+  display: block;
+  width: 50%;
+  height: 40px;
+  text-align: left;
+`;
+
+export const TextField = styled.input`
+  font-size: 16px;
+  font-family: "p-regular";
+  color: #9D9D9D;
+  width: 575px;
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid #9D9D9D;
+  outline: none;
+
+  &:focus {
+    border-bottom: 1px solid #007BFF;
+  }
+`;
+
+export const CreateAccountButton = styled.button`
+  font-size: 20px;
+  font-family: "p-semibold";
+  color: white;
+  background-color: #5B86E5;
+  border: none;
+  border-radius: 8px;
+  padding: 15px 30px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 575px;
+  height: 60px;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: #3d6ab7;
+  }
+`;
+
+export const LoginText = styled.div`
+  font-size: 16px;
+  font-family: "p-medium";
+  color: black;
+  margin-top: 20px;
+`;
+
+export const LoginButton = styled.button`
+  font-size: 16px;
+  font-family: "p-extrabold";
+  color: #5B86E5;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const SignUp = () => {
   return (
     <SignUpContainer>
@@ -62,6 +131,12 @@ const SignUp = () => {
         </Logo>
       </LeftSection>
       <RightSection>
+        <SignUpText>Create Account</SignUpText>
+        <TextField type="text" placeholder="Full Name" style={{ marginTop: '80px' }}></TextField>
+        <TextField type="text" placeholder="Email" style={{ marginTop: '35px' }}></TextField>
+        <TextField type="text" placeholder="Password" style={{ marginTop: '35px', marginBottom: '45px' }}></TextField>
+        <CreateAccountButton>Create Account</CreateAccountButton>
+        <LoginText style={{ marginTop: '30px' }} >Already have an account?<LoginButton>Login</LoginButton></LoginText>
       </RightSection>
     </SignUpContainer>
   );

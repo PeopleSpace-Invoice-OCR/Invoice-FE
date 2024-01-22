@@ -9,13 +9,13 @@ import SignUp from './components/SignUpPage/SignUp';
 function App() {
   return (
     <Router>
-      <Header />
-        <Routes>
+      {/* <Header /> */}
+        {/* <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/sign-up' element={<SignUp />} />
-        </Routes>
-        <Footer />
-      {/* <SignUp /> */}
+        </Routes> */}
+        {/* <Footer /> */}
+      <SignUp />
     </Router>
   );
 }
