@@ -1,26 +1,32 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const MainBox = styled.div`
   background-color: var(--bg-color);
   height: 100vh;
+  justify-content: center;
 `;
 
 export const Contents = styled.div`
+  display: flex;
+  align-items: center;
   flex: 1;
   overflow-y: auto;
   height: 86vh;
   margin: 8vh 0;
+  padding: 0 0 40vh 40vh;
   position: fixed;
 `;
 
 export const Title = styled.div`
   font-size: 80px;
   font-family: "p-bold";
-  font-color: var(--font-black);
+  color: var(--font-black);
   font-weight: 600;
   line-height: 90px;
   word-wrap: break-word;
+  padding: 0 25vh 0 0;
 `;
 
 export const Description = styled.div`
@@ -37,8 +43,10 @@ export const Start = styled.button`
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  padding: 10px;
-  font-size: 20px;
+  padding: 13px 20px 13px 20px;
+  margin: 20px 0 0 0;
+  font-size: 17px;
+  font-color: #ffffff;
 `;
 
 export const InvoiceImg = styled.img`
@@ -46,14 +54,28 @@ export const InvoiceImg = styled.img`
 `;
 
 const Main = () => {
+  const navigate = useNavigate();
+
+  const onNextPage = () => {
+    navigate("/upload");
+  };
+
   return (
     <MainBox>
       <Contents>
-        <Title>Scan your invoice</Title>
-        <Description>
-          Organize your invoice faster, simpler, and more accurately
-        </Description>
-        <Start>Get started</Start>
+        <div>
+          <Title>
+            Scan your
+            <br />
+            invoice
+          </Title>
+          <Description>
+            Organize your invoice
+            <br />
+            faster, simpler, and more accurately
+          </Description>
+          <Start onClick={onNextPage}>Get started</Start>
+        </div>
         <InvoiceImg src="./images/invoiceExample.png" alt="img" />
       </Contents>
     </MainBox>
