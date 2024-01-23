@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const SignUpContainer = styled.div`
   display: flex;
@@ -152,9 +153,7 @@ const SignUp = () => {
           style={{ marginTop: "35px", marginBottom: "45px" }}
         ></TextField>
         <CreateAccountButton>Create Account</CreateAccountButton>
-        <LoginText style={{ marginTop: "30px" }}>
-          Already have an account?<LoginButton>Login</LoginButton>
-        </LoginText>
+        <LoginText style={{ marginTop: '30px' }} >Already have an account?<Link to="/login"><LoginButton>Login</LoginButton></Link></LoginText>
       </RightSection>
     </SignUpContainer>
   );
