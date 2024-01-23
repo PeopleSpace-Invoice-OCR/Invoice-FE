@@ -39,11 +39,11 @@ export const Description = styled.div`
 `;
 
 export const Start = styled.button`
-  background: #5b86e5;
+  background: #f8d57e;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  padding: 13px;
+  padding: 13px 20px 13px 20px;
   margin: 20px 0 0 0;
   font-size: 17px;
   font-color: #ffffff;
