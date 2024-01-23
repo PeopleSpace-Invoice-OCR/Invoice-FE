@@ -97,6 +97,7 @@ export const ResetBtn = styled.button`
   display: inline-flex;
   font-size: 16px;
   font-family: p-reg;
+  cursor: pointer;
 `;
 
 export const UploadBtn = styled.button`
@@ -109,12 +110,14 @@ export const UploadBtn = styled.button`
   margin-left: 3vh;
   background: #5b86e5;
   border-radius: 8px;
+  border: 0px #5b86e5;
   justify-content: center;
   align-items: center;
   gap: 4px;
   display: inline-flex;
   font-size: 16px;
   font-family: p-reg;
+  cursor: pointer;
 `;
 
 export const UploadedImage = styled.img`

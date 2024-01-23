@@ -11,12 +11,11 @@ export const MainBox = styled.div`
 export const Contents = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex: 1;
   overflow-y: auto;
   height: 86vh;
   margin: 8vh 0;
-  padding: 0 0 30vh 30vh;
+  padding: 0 0 40vh 40vh;
   position: fixed;
 `;
 
@@ -27,7 +26,7 @@ export const Title = styled.div`
   font-weight: 600;
   line-height: 90px;
   word-wrap: break-word;
-  padding: 0 30vh 0 0;
+  padding: 0 25vh 0 0;
 `;
 
 export const Description = styled.div`
