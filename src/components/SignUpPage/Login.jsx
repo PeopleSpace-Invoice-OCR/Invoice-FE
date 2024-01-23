@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const SignUpContainer = styled.div`
     display: flex;
@@ -79,7 +80,7 @@ export const TextField = styled.input`
   }
 `;
 
-export const CreateAccountButton = styled.button`
+export const LoginButton = styled.button`
   font-size: 20px;
   font-family: "p-semibold";
   color: white;
@@ -106,19 +107,6 @@ export const LoginText = styled.div`
   margin-top: 20px;
 `;
 
-export const LoginButton = styled.button`
-  font-size: 16px;
-  font-family: "p-extrabold";
-  color: #5B86E5;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
 const Login = () => {
   return (
     <SignUpContainer>
@@ -134,7 +122,7 @@ const Login = () => {
         <SignUpText>Login</SignUpText>
         <TextField type="text" placeholder="Email" style={{ marginTop: '35px' }}></TextField>
         <TextField type="text" placeholder="Password" style={{ marginTop: '35px', marginBottom: '45px' }}></TextField>
-        <CreateAccountButton>Login</CreateAccountButton>
+        <Link to="/"><LoginButton>Login</LoginButton></Link>
       </RightSection>
     </SignUpContainer>
   );
