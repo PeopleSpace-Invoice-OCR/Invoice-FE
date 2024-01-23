@@ -1,6 +1,5 @@
 import React from 'react';
 import { styled } from "styled-components";
-import { Link } from 'react-router-dom';
 
 export const SignUpContainer = styled.div`
     display: flex;
@@ -120,7 +119,7 @@ export const LoginButton = styled.button`
   }
 `;
 
-const SignUp = () => {
+const Login = () => {
   return (
     <SignUpContainer>
       <LeftSection>
@@ -132,15 +131,13 @@ const SignUp = () => {
         </Logo>
       </LeftSection>
       <RightSection>
-        <SignUpText>Create Account</SignUpText>
-        <TextField type="text" placeholder="Full Name" style={{ marginTop: '80px' }}></TextField>
+        <SignUpText>Login</SignUpText>
         <TextField type="text" placeholder="Email" style={{ marginTop: '35px' }}></TextField>
         <TextField type="text" placeholder="Password" style={{ marginTop: '35px', marginBottom: '45px' }}></TextField>
-        <CreateAccountButton>Create Account</CreateAccountButton>
-        <LoginText style={{ marginTop: '30px' }} >Already have an account?<Link to="/login"><LoginButton>Login</LoginButton></Link></LoginText>
+        <CreateAccountButton>Login</CreateAccountButton>
       </RightSection>
     </SignUpContainer>
   );
 };
 
-export default SignUp;
+export default Login;
