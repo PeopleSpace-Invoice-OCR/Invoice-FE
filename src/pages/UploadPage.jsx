@@ -1,16 +1,16 @@
 import React from "react";
-import Main from "../components/MainPage/Main";
+import Upload from "../components/Upload/Upload";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 
-const MainPage = () => {
+const UploadPage = () => {
   return (
     <>
       <Header />
-      <Main />
+      <Upload />
       <Footer />
     </>
   );
 };
 
-export default MainPage;
+export default UploadPage;
