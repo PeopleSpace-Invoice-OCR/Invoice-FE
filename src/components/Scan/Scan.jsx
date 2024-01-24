@@ -48,7 +48,7 @@ export const Table = styled.div`
   margin-top: 30px;
 `;
 
-export const ScanAgainButton = styled.button`
+export const ModifyButton = styled.button`
   font-size: 20px;
   font-family: "p-semibold";
   color: #5b86e5; /* 글자 색상 */
@@ -67,7 +67,7 @@ export const ScanAgainButton = styled.button`
   }
 `;
 
-export const ModifyButton = styled.button`
+export const SaveButton = styled.button`
   font-size: 20px;
   font-family: "p-semibold";
   color: white;
@@ -105,8 +105,8 @@ const Scan = () => {
             <Description style={{ marginTop: "20px" }}>Ship To: 어쩌구</Description>
             <Table />
             <ButtonContainer>
-            <ScanAgainButton>Scan Again</ScanAgainButton>
             <ModifyButton>Modify Information</ModifyButton>
+            <SaveButton>Save</SaveButton>
             </ButtonContainer>
         </RightSection>
     </Container>
