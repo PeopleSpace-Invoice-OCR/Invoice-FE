@@ -48,7 +48,7 @@ export const CloudImg = styled.img`
 `;
 
 export const FileName = styled.div`
-  margin-top: 10px;
+  margin: 30px;
   font-family: p-reg;
 `;
 
@@ -141,13 +141,19 @@ const Upload = () => {
     <MainBox>
       <Contents>
         <Title>Upload your Invoices</Title>
-        <UploadBox
-          onClick={handleUploadBoxClick}
-          onDrop={handleFileDrop}
-          onDragOver={(e) => e.preventDefault()}
-        >
-          {uploadedFileName.length > 0 ? (
-            <FileName>{uploadedFileName}</FileName>
+        <UploadBox {...getRootProps()}>
+          <input multiple="" type="file" {...getInputProps()} />
+          {uploadedImage.length > 0 ? (
+            <FileName>
+              <ul>
+                {uploadedImage.map((file, index) => (
+                  <li className="upload-list" key={index}>
+                    <img src="/images/ic_wrapper.svg" alt="파일" />
+                    {file.name}
+                  </li>
+                ))}
+              </ul>
+            </FileName>
           ) : (
             <div>
               <CloudImg src="./images/uploadCloud.png" alt="img" />
