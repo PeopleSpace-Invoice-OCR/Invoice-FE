@@ -1,10 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+
+const redirectToSite = () => {
+  window.location.href = "https://www.irvinetechhub.com/";
+};
+
 export default function Footer() {
   return (
     <FooterWrapper>
       <div className="logo">{"ⓒ"} PeopleSpace 2024</div>
-      <div className="contact">Contact us</div>
+      <button className="contact" onClick={redirectToSite}>Contact us</button>
     </FooterWrapper>
   );
 }
@@ -31,5 +36,8 @@ const FooterWrapper = styled.section`
     margin-left: auto;
     margin-right: 170px;
     font-family: "p-reg";
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
   }
 `;
