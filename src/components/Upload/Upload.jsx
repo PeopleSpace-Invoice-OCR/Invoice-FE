@@ -147,8 +147,8 @@ const Upload = () => {
             <FileName>
               <ul>
                 {uploadedImage.map((file, index) => (
-                  <li className="upload-list" key={index}>
-                    <img src="/images/ic_wrapper.svg" alt="파일" />
+                  <li key={index}>
+                    <img src="/images/ic_wrapper.svg" alt="file" />
                     {file.name}
                   </li>
                 ))}
