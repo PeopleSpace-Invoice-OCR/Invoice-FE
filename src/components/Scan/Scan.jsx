@@ -3,7 +3,6 @@ import { styled } from "styled-components";
 import ScanTable from "./ScanTable";
 
 export const Container = styled.div`
-  height: 80vh;
   padding: 10vh 0;
   display: flex;
   justify-content: center;
@@ -18,7 +17,6 @@ export const LeftSection = styled.div`
 `;
 
 export const RightSection = styled.div`
-  height: 80vh;
   background-color: white;
   display: flex;
   justify-content: center;
