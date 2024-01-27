@@ -56,11 +56,6 @@ export const ScanAgainButton = styled.button`
   width: 285px;
   height: 60px;
   transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: var(--dark-color);
-    color: #ffffff;
-  }
 `;
 
 export const ModifyButton = styled.button`
@@ -78,13 +73,6 @@ export const ModifyButton = styled.button`
   transition: background-color 0.3s ease;
   border-radius: 8px;
   margin-left: 15px;
-
-  &:hover {
-    background-color: #ffffff;
-    color: var(--dark-color);
-    border: 1px solid #5b86e5;
-    border-radius: 8px;
-  }
 `;
 
 export const ButtonContainer = styled.div`
