@@ -47,7 +47,6 @@ footer, header, hgroup, main, menu, nav, section {
 body {
   line-height: 1;
   background-color: white;
-  min-width: fit-content; // 중간에 추가함
 }
 menu, ol, ul {
   list-style: none;
