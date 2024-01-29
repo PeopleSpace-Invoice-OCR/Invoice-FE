@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
@@ -113,6 +113,7 @@ export const UploadBtn = styled.button`
   font-size: 16px;
   font-family: p-reg;
   cursor: pointer;
+  color: #ffffff;
 `;
 
 export const UploadedImage = styled.img`
@@ -124,6 +125,7 @@ export const UploadedImage = styled.img`
 const Upload = () => {
   const fileInputRef = useRef(null);
   const [uploadedImage, setUploadedImage] = useState([]);
+  const navigate = useNavigate();
 
   // Dropzone 설정 함수들
   const onDrop = (acceptedFiles) => {
@@ -136,6 +138,10 @@ const Upload = () => {
     onDrop,
     noKeyboard: true, // 키보드로 업로드할 수 없도록 설정
   });
+
+  const onNextPage = () => {
+    navigate("/scan");
+  };
 
   return (
     <MainBox>
@@ -169,7 +175,7 @@ const Upload = () => {
           )}
         </UploadBox>
         <ResetBtn onClick={resetImg}>Reset</ResetBtn>
-        <UploadBtn>Get Information</UploadBtn>
+        <UploadBtn onClick={onNextPage}>Get Information</UploadBtn>
       </Contents>
     </MainBox>
   );
