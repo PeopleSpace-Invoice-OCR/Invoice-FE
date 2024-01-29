@@ -140,7 +140,11 @@ const Upload = () => {
   });
 
   const onNextPage = () => {
-    navigate("/scan");
+    if (uploadedImage.length > 0) {
+      navigate("/scan");
+    } else {
+      alert("Please upload the invoice file");
+    }
   };
 
   return (
