@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 import ScanTable from "./ScanTable";
 
@@ -85,6 +85,8 @@ export const ButtonContainer = styled.div`
 
 const Scan = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const uploadedImage = location.state?.uploadedImage || [];
 
   const onNextPage = () => {
     navigate("/upload");
@@ -93,7 +95,7 @@ const Scan = () => {
   return (
     <Container>
       <LeftSection>
-        <img src="/images/invoiceExample.png" alt="invoice" />
+        <img src={URL.createObjectURL(uploadedImage[0])} alt="invoice" />
       </LeftSection>
       <RightSection>
         <Title>Your Invoice</Title>

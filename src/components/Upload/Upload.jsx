@@ -36,6 +36,10 @@ export const UploadBox = styled.div`
   border-radius: 24px;
   border: 2px #5b86e5 dotted;
   position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const CloudImg = styled.img`
@@ -141,7 +145,7 @@ const Upload = () => {
 
   const onNextPage = () => {
     if (uploadedImage.length > 0) {
-      navigate("/scan");
+      navigate("/scan", { state: { uploadedImage } });
     } else {
       alert("Please upload the invoice file");
     }
