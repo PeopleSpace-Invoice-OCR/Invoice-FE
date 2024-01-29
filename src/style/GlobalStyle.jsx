@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
     --primary-color: #5B86E5E5;   
     --bg-color: #5B86E54D;  /* background-color: var(--primary-color); */
     --third-color: #5B86E5;
+    --dark-color: #3d6ab7;
     --font-black: #2D2D2D;
     --font-regular: 1rem;
     --font-big: 1.3rem;
@@ -62,9 +63,6 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-*{
-    box-sizing: border_box;
 }
 a{
     text-decoration: none;

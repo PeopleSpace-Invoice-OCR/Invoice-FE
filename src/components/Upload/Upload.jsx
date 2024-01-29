@@ -1,4 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { useDropzone } from "react-dropzone";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const MainBox = styled.div`
@@ -46,7 +48,7 @@ export const CloudImg = styled.img`
 `;
 
 export const FileName = styled.div`
-  margin-top: 10px;
+  margin: 30px;
   font-family: p-reg;
 `;
 
@@ -65,7 +67,6 @@ export const UploadText2 = styled.div`
   top: 60%;
   left: 50%;
   transform: translateX(-50%);
-
   color: rgba(91, 134, 229, 0.9);
   font-size: 17px;
   font-family: p-reg;
@@ -84,10 +85,7 @@ export const UploadText3 = styled.div`
 export const ResetBtn = styled.button`
   width: 15vh;
   height: 7vh;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 12px;
   background: white;
   border-radius: 8px;
   border: 2px #5b86e5 solid;
@@ -103,10 +101,7 @@ export const ResetBtn = styled.button`
 export const UploadBtn = styled.button`
   width: 42vh;
   height: 7vh;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 12px;
   margin-left: 3vh;
   background: #5b86e5;
   border-radius: 8px;
@@ -128,51 +123,37 @@ export const UploadedImage = styled.img`
 
 const Upload = () => {
   const fileInputRef = useRef(null);
-  const [uploadedFileName, setUploadedFileName] = useState([]);
   const [uploadedImage, setUploadedImage] = useState([]);
 
-  const handleUploadBoxClick = () => {
-    fileInputRef.current.click();
-    fileUpload(fileInputRef.current.files);
+  // Dropzone 설정 함수들
+  const onDrop = (acceptedFiles) => {
+    setUploadedImage(acceptedFiles);
   };
-
-  const handleFileDrop = (e) => {
-    e.preventDefault();
-    const files = e.dataTransfer.files;
-    fileUpload(files);
-  };
-
-  const fileUpload = (files) => {
-    if (files.length > 0) {
-      const file = files[0];
-      setUploadedFileName(file.name);
-
-      if (file.type.startsWith("image/")) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          setUploadedImage(event.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-  };
-
   const resetImg = () => {
-    setUploadedFileName([]);
     setUploadedImage([]);
   };
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    noKeyboard: true, // 키보드로 업로드할 수 없도록 설정
+  });
 
   return (
     <MainBox>
       <Contents>
         <Title>Upload your Invoices</Title>
-        <UploadBox
-          onClick={handleUploadBoxClick}
-          onDrop={handleFileDrop}
-          onDragOver={(e) => e.preventDefault()}
-        >
-          {uploadedFileName.length > 0 ? (
-            <FileName>{uploadedFileName}</FileName>
+        <UploadBox {...getRootProps()}>
+          <input multiple="" type="file" {...getInputProps()} />
+          {uploadedImage.length > 0 ? (
+            <FileName>
+              <ul>
+                {uploadedImage.map((file, index) => (
+                  <li key={index}>
+                    <img src="/images/ic_wrapper.svg" alt="file" />
+                    {file.name}
+                  </li>
+                ))}
+              </ul>
+            </FileName>
           ) : (
             <div>
               <CloudImg src="./images/uploadCloud.png" alt="img" />

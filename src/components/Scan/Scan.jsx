@@ -1,30 +1,32 @@
 import React, { useRef, useState } from "react";
 import { styled } from "styled-components";
+import ScanTable from "./ScanTable";
 
 export const Container = styled.div`
-  height: 100vh;
+  padding: 10vh 0;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const LeftSection = styled.div`
-  height: 100vh;
-  background-color: gray;
+  height: 80vh;
   display: flex;
-  flex: 5;
+  flex: 1;
+  margin-left: 5%;
 `;
 
 export const RightSection = styled.div`
-  height: 100vh;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: left;
-  flex: 5;
+  flex: 1;
   flex-direction: column;
-  margin-left: 8%;
+  margin-right: 8%;
 `;
+
+export const ScanTableContainer = styled.div``;
 
 export const Title = styled.span`
   font-size: 40px;
@@ -36,24 +38,17 @@ export const Title = styled.span`
 export const Description = styled.div`
   color: black;
   font-size: 20px;
-  font-family: "p-regular";
+  font-family: "p-reg";
   font-weight: 400;
   line-height: 40px;
 `;
 
-export const Table = styled.div`
-  background-color: green;
-  width: 500px;
-  height: 500px;
-  margin-top: 30px;
-`;
-
-export const ModifyButton = styled.button`
+export const ScanAgainButton = styled.button`
   font-size: 20px;
   font-family: "p-semibold";
-  color: #5b86e5; /* 글자 색상 */
-  background-color: white; /* 버튼 자체의 색상 */
-  border: 1px solid #5b86e5; /* 테두리 색상 및 두께 */
+  color: #5b86e5;
+  background-color: white;
+  border: 1px solid #5b86e5;
   border-radius: 8px;
   padding: 15px 30px;
   cursor: pointer;
@@ -63,11 +58,12 @@ export const ModifyButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #3d6ab7;
+    background-color: var(--dark-color);
+    color: #ffffff;
   }
 `;
 
-export const SaveButton = styled.button`
+export const ModifyButton = styled.button`
   font-size: 20px;
   font-family: "p-semibold";
   color: white;
@@ -84,7 +80,10 @@ export const SaveButton = styled.button`
   margin-left: 15px;
 
   &:hover {
-    background-color: #3d6ab7;
+    background-color: #ffffff;
+    color: var(--dark-color);
+    border: 1px solid #5b86e5;
+    border-radius: 8px;
   }
 `;
 
@@ -93,22 +92,27 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   flex-direction: row;
   margin-top: 30px;
-`
+`;
 
 const Scan = () => {
   return (
     <Container>
-        <LeftSection />
-        <RightSection>
-            <Title>Your Invoice</Title>
-            <Description style={{ marginTop: "30px" }}>Order Date: 1-17-2024</Description>
-            <Description style={{ marginTop: "20px" }}>Ship To: 어쩌구</Description>
-            <Table />
-            <ButtonContainer>
-            <ModifyButton>Modify Information</ModifyButton>
-            <SaveButton>Save</SaveButton>
-            </ButtonContainer>
-        </RightSection>
+      <LeftSection>
+        <img src="/images/invoiceExample.png" alt="invoice" />
+      </LeftSection>
+      <RightSection>
+        <Title>Your Invoice</Title>
+        <Description>Order Date: 1-17-2024</Description>
+        <Description>Ship To:</Description>
+        <Description>상세주소</Description>
+        <ScanTableContainer>
+          <ScanTable />
+        </ScanTableContainer>
+        <ButtonContainer>
+          <ScanAgainButton>Scan Again</ScanAgainButton>
+          <ModifyButton>Modify Information</ModifyButton>
+        </ButtonContainer>
+      </RightSection>
     </Container>
   );
 };

@@ -5,11 +5,11 @@ import Scan from "../components/Scan/Scan";
 
 const ScanPage = () => {
   return (
-    <>
+    <div style={{ overflowY: "scroll" }}>
       <Header />
       <Scan />
       <Footer />
-    </>
+    </div>
   );
 };
 
