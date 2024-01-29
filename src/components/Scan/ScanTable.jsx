@@ -3,18 +3,19 @@ import { styled } from "styled-components";
 
 export const TableBody = styled.table`
   width: 30rem;
-  border: 1px solid #ddd;
+  border: 0.5px solid #ddd;
+  background-color: var(--bg-color);
 `;
 
 export const TD = styled.td`
   text-align: right;
-  border: 1px solid #555;
+  border: 0.5px solid #555;
   padding: 0.3rem;
   font-family: "p-reg";
 `;
 
 export const TH = styled.th`
-  border: 1px solid #555;
+  border: 0.5px solid #555;
   padding: 0.3rem;
   font-family: "p-reg";
   font-size: 20px;

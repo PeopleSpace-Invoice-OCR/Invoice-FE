@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 :root{ 
     --primary-color: #5B86E5E5;   
-    --bg-color: #5B86E54D;  /* background-color: var(--primary-color); */
+    --bg-color: #5B86E54F;  /* background-color: var(--primary-color); */
     --third-color: #5B86E5;
     --dark-color: #3d6ab7;
     --font-black: #2D2D2D;
@@ -47,7 +47,6 @@ footer, header, hgroup, main, menu, nav, section {
 body {
   line-height: 1;
   background-color: white;
-  min-width: fit-content; // 중간에 추가함
 }
 menu, ol, ul {
   list-style: none;
