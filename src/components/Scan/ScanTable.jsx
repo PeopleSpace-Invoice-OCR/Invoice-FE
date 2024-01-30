@@ -22,13 +22,7 @@ export const TH = styled.th`
   text-transform: uppercase;
 `;
 
-const ScanTable = () => {
-  const [data, setData] = useState([
-    { desc: "hello", qty: 1, price: 1, total: 1.0 },
-    { desc: "hello", qty: 1, price: 1, total: 1.0 },
-    { desc: "hello", qty: 1, price: 1, total: 1.0 },
-  ]);
-
+const ScanTable = ({ data, onChange, isModifying }) => {
   return (
     <TableBody>
       <thead>
@@ -42,9 +36,43 @@ const ScanTable = () => {
       <tbody>
         {data.map((item, index) => (
           <tr key={index}>
-            <TD>{item.desc}</TD>
-            <TD>{item.qty}</TD>
-            <TD>{item.price}</TD>
+            <TD>
+              {isModifying ? (
+                <input
+                  type="text"
+                  value={item.desc}
+                  onChange={(e) => onChange(index, "desc", e.target.value)}
+                />
+              ) : (
+                <span>{item.desc}</span>
+              )}
+            </TD>
+            <TD>
+              {isModifying ? (
+                <input
+                  type="number"
+                  value={item.qty}
+                  onChange={(e) =>
+                    onChange(index, "qty", parseInt(e.target.value, 10))
+                  }
+                />
+              ) : (
+                <span>{item.qty}</span>
+              )}
+            </TD>
+            <TD>
+              {isModifying ? (
+                <input
+                  type="number"
+                  value={item.price}
+                  onChange={(e) =>
+                    onChange(index, "price", parseFloat(e.target.value))
+                  }
+                />
+              ) : (
+                <span>{item.price}</span>
+              )}
+            </TD>
             <TD>{item.total}</TD>
           </tr>
         ))}
