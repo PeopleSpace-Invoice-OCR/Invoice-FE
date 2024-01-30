@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 import ScanTable from "./ScanTable";
 
@@ -44,32 +45,32 @@ export const Description = styled.div`
 `;
 
 export const ScanAgainButton = styled.button`
-  font-size: 20px;
+  width: 42vh;
+  height: 7vh;
+  padding: 10px 12px;
+  font-size: 18px;
   font-family: "p-semibold";
   color: #5b86e5;
   background-color: white;
   border: 1px solid #5b86e5;
   border-radius: 8px;
-  padding: 15px 30px;
   cursor: pointer;
   margin-top: 20px;
-  width: 285px;
-  height: 60px;
   transition: background-color 0.3s ease;
 `;
 
 export const ModifyButton = styled.button`
-  font-size: 20px;
+  font-size: 18px;
   font-family: "p-semibold";
   color: white;
   background-color: #5b86e5;
   border: none;
   border-radius: 8px;
-  padding: 15px 30px;
   cursor: pointer;
   margin-top: 20px;
-  width: 285px;
-  height: 60px;
+  width: 42vh;
+  height: 7vh;
+  padding: 10px 12px;
   transition: background-color 0.3s ease;
   border-radius: 8px;
   margin-left: 15px;
@@ -83,10 +84,18 @@ export const ButtonContainer = styled.div`
 `;
 
 const Scan = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const uploadedImage = location.state?.uploadedImage || [];
+
+  const onNextPage = () => {
+    navigate("/upload");
+  };
+
   return (
     <Container>
       <LeftSection>
-        <img src="/images/invoiceExample.png" alt="invoice" />
+        <img src={URL.createObjectURL(uploadedImage[0])} alt="invoice" />
       </LeftSection>
       <RightSection>
         <Title>Your Invoice</Title>
@@ -97,7 +106,7 @@ const Scan = () => {
           <ScanTable />
         </ScanTableContainer>
         <ButtonContainer>
-          <ScanAgainButton>Scan Again</ScanAgainButton>
+          <ScanAgainButton onClick={onNextPage}>Scan Again</ScanAgainButton>
           <ModifyButton>Modify Information</ModifyButton>
         </ButtonContainer>
       </RightSection>
