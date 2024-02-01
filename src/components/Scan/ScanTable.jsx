@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
 
 export const TableBody = styled.table`
@@ -22,16 +22,7 @@ export const TH = styled.th`
   text-transform: uppercase;
 `;
 
-export const InputField = styled.input`
-  border: none;
-  outline: none;
-  padding: 0.3rem;
-  font-family: "p-reg";
-  color: black;
-  background-color: transparent;
-`;
-
-const ScanTable = ({ data, onChange, isModifying }) => {
+const ScanTable = ({ data }) => {
   return (
     <TableBody>
       <thead>
@@ -45,45 +36,9 @@ const ScanTable = ({ data, onChange, isModifying }) => {
       <tbody>
         {data.map((item, index) => (
           <tr key={index}>
-            <TD>
-              {isModifying ? (
-                <InputField
-                  type="text"
-                  value={item.desc}
-                  onChange={(e) => onChange(index, "desc", e.target.value)}
-                />
-              ) : (
-                <span>{item.desc}</span>
-              )}
-            </TD>
-            <TD>
-              {isModifying ? (
-                <InputField
-                  type="number"
-                  value={item.qty}
-                  onChange={(e) =>
-                    onChange(index, "qty", parseInt(e.target.value, 10))
-                  }
-                  style={{ width: "3rem" }}
-                />
-              ) : (
-                <span>{item.qty}</span>
-              )}
-            </TD>
-            <TD>
-              {isModifying ? (
-                <InputField
-                  type="number"
-                  value={item.price}
-                  onChange={(e) =>
-                    onChange(index, "price", parseFloat(e.target.value))
-                  }
-                  style={{ width: "5rem" }}
-                />
-              ) : (
-                <span>{item.price}</span>
-              )}
-            </TD>
+            <TD>{item.desc}</TD>
+            <TD>{item.qty}</TD>
+            <TD>{item.price}</TD>
             <TD>{item.total}</TD>
           </tr>
         ))}
