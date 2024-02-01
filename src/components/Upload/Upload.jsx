@@ -140,7 +140,7 @@ const Upload = () => {
   };
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    noKeyboard: true, // 키보드로 업로드할 수 없도록 설정
+    noKeyboard: true,
   });
 
   const onNextPage = () => {

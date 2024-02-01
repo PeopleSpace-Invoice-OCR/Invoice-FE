@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 import ScanTable from "./ScanTable";
@@ -26,8 +26,6 @@ export const RightSection = styled.div`
   flex-direction: column;
   margin-right: 8%;
 `;
-
-export const ScanTableContainer = styled.div``;
 
 export const Title = styled.span`
   font-size: 40px;
@@ -83,13 +81,54 @@ export const ButtonContainer = styled.div`
   margin-top: 30px;
 `;
 
+export const InputField = styled.input`
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  padding: 5px;
+  font-size: 16px;
+  font-family: "p-reg";
+  color: black;
+
+  &:focus {
+    border-bottom: 2px solid #5b86e5;
+  }
+`;
+
 const Scan = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const uploadedImage = location.state?.uploadedImage || [];
 
+  const [orderDate, setOrderDate] = useState("1-17-2024");
+  const [shipToAddress, setShipToAddress] = useState("상세주소");
+
+  const [isModifying, setIsModifying] = useState(false);
+
   const onNextPage = () => {
     navigate("/upload");
+  };
+
+  const handleModify = () => {
+    setIsModifying(!isModifying);
+  };
+
+  const handleSaveChanges = () => {
+    alert("Your changes have been saved.");
+
+    setIsModifying(false);
+  };
+
+  const [tableData, setTableData] = useState([
+    { desc: "hello", qty: 1, price: 1, total: 1.0 },
+    { desc: "hello", qty: 1, price: 1, total: 1.0 },
+    { desc: "hello", qty: 1, price: 1, total: 1.0 },
+  ]);
+
+  const handleTableDataChange = (index, field, value) => {
+    const newData = [...tableData];
+    newData[index][field] = value;
+    setTableData(newData);
   };
 
   return (
@@ -99,15 +138,47 @@ const Scan = () => {
       </LeftSection>
       <RightSection>
         <Title>Your Invoice</Title>
-        <Description>Order Date: 1-17-2024</Description>
-        <Description>Ship To:</Description>
-        <Description>상세주소</Description>
-        <ScanTableContainer>
-          <ScanTable />
-        </ScanTableContainer>
+        <Description>
+          Order Date:
+          {isModifying ? (
+            <InputField
+              type="text"
+              value={orderDate}
+              onChange={(e) => setOrderDate(e.target.value)}
+            />
+          ) : (
+            <span>{orderDate}</span>
+          )}
+        </Description>
+        <Description>
+          Ship To:
+          <br />
+          {isModifying ? (
+            <InputField
+              type="text"
+              value={shipToAddress}
+              onChange={(e) => setShipToAddress(e.target.value)}
+            />
+          ) : (
+            <span>{shipToAddress}</span>
+          )}
+        </Description>
+        <ScanTable
+          data={tableData}
+          onChange={handleTableDataChange}
+          isModifying={isModifying}
+        />
         <ButtonContainer>
           <ScanAgainButton onClick={onNextPage}>Scan Again</ScanAgainButton>
-          <ModifyButton>Modify Information</ModifyButton>
+          {isModifying ? (
+            <ModifyButton onClick={handleSaveChanges}>
+              Save Changes
+            </ModifyButton>
+          ) : (
+            <ModifyButton onClick={handleModify}>
+              Modify Information
+            </ModifyButton>
+          )}
         </ButtonContainer>
       </RightSection>
     </Container>
