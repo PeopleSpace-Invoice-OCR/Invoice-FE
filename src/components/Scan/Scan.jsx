@@ -85,13 +85,13 @@ export const InputField = styled.input`
   border: none;
   border-bottom: 1px solid black;
   outline: none;
-  padding: 5px; // Adjust as needed
-  font-size: 16px; // Adjust as needed
+  padding: 5px;
+  font-size: 16px;
   font-family: "p-reg";
   color: black;
 
   &:focus {
-    border-bottom: 2px solid #5b86e5; // Adjust the color and thickness as needed
+    border-bottom: 2px solid #5b86e5;
   }
 `;
 

@@ -22,6 +22,15 @@ export const TH = styled.th`
   text-transform: uppercase;
 `;
 
+export const InputField = styled.input`
+  border: none;
+  outline: none;
+  padding: 0.3rem;
+  font-family: "p-reg";
+  color: black;
+  background-color: transparent;
+`;
+
 const ScanTable = ({ data, onChange, isModifying }) => {
   return (
     <TableBody>
@@ -38,7 +47,7 @@ const ScanTable = ({ data, onChange, isModifying }) => {
           <tr key={index}>
             <TD>
               {isModifying ? (
-                <input
+                <InputField
                   type="text"
                   value={item.desc}
                   onChange={(e) => onChange(index, "desc", e.target.value)}
@@ -49,12 +58,13 @@ const ScanTable = ({ data, onChange, isModifying }) => {
             </TD>
             <TD>
               {isModifying ? (
-                <input
+                <InputField
                   type="number"
                   value={item.qty}
                   onChange={(e) =>
                     onChange(index, "qty", parseInt(e.target.value, 10))
                   }
+                  style={{ width: "3rem" }}
                 />
               ) : (
                 <span>{item.qty}</span>
@@ -62,12 +72,13 @@ const ScanTable = ({ data, onChange, isModifying }) => {
             </TD>
             <TD>
               {isModifying ? (
-                <input
+                <InputField
                   type="number"
                   value={item.price}
                   onChange={(e) =>
                     onChange(index, "price", parseFloat(e.target.value))
                   }
+                  style={{ width: "5rem" }}
                 />
               ) : (
                 <span>{item.price}</span>
