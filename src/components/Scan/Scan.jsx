@@ -103,20 +103,8 @@ const Scan = () => {
   const [orderDate, setOrderDate] = useState("1-17-2024");
   const [shipToAddress, setShipToAddress] = useState("상세주소");
 
-  const [isModifying, setIsModifying] = useState(false);
-
   const onNextPage = () => {
     navigate("/upload");
-  };
-
-  const handleModify = () => {
-    setIsModifying(!isModifying);
-  };
-
-  const handleSaveChanges = () => {
-    alert("Your changes have been saved.");
-
-    setIsModifying(false);
   };
 
   const [tableData, setTableData] = useState([
@@ -124,12 +112,6 @@ const Scan = () => {
     { desc: "hello", qty: 1, price: 1, total: 1.0 },
     { desc: "hello", qty: 1, price: 1, total: 1.0 },
   ]);
-
-  const handleTableDataChange = (index, field, value) => {
-    const newData = [...tableData];
-    newData[index][field] = value;
-    setTableData(newData);
-  };
 
   return (
     <Container>
@@ -140,45 +122,17 @@ const Scan = () => {
         <Title>Your Invoice</Title>
         <Description>
           Order Date:
-          {isModifying ? (
-            <InputField
-              type="text"
-              value={orderDate}
-              onChange={(e) => setOrderDate(e.target.value)}
-            />
-          ) : (
-            <span>{orderDate}</span>
-          )}
+          {orderDate}
         </Description>
         <Description>
           Ship To:
           <br />
-          {isModifying ? (
-            <InputField
-              type="text"
-              value={shipToAddress}
-              onChange={(e) => setShipToAddress(e.target.value)}
-            />
-          ) : (
-            <span>{shipToAddress}</span>
-          )}
+          {shipToAddress}
         </Description>
-        <ScanTable
-          data={tableData}
-          onChange={handleTableDataChange}
-          isModifying={isModifying}
-        />
+        <ScanTable data={tableData} />
         <ButtonContainer>
           <ScanAgainButton onClick={onNextPage}>Scan Again</ScanAgainButton>
-          {isModifying ? (
-            <ModifyButton onClick={handleSaveChanges}>
-              Save Changes
-            </ModifyButton>
-          ) : (
-            <ModifyButton onClick={handleModify}>
-              Modify Information
-            </ModifyButton>
-          )}
+          <ModifyButton>Save invoice</ModifyButton>
         </ButtonContainer>
       </RightSection>
     </Container>
