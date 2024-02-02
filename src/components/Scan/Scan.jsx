@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+
 import { styled } from "styled-components";
 import ScanTable from "./ScanTable";
 
@@ -81,20 +83,6 @@ export const ButtonContainer = styled.div`
   margin-top: 30px;
 `;
 
-export const InputField = styled.input`
-  border: none;
-  border-bottom: 1px solid black;
-  outline: none;
-  padding: 5px;
-  font-size: 16px;
-  font-family: "p-reg";
-  color: black;
-
-  &:focus {
-    border-bottom: 2px solid #5b86e5;
-  }
-`;
-
 const Scan = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -102,6 +90,49 @@ const Scan = () => {
 
   const [orderDate, setOrderDate] = useState("1-17-2024");
   const [shipToAddress, setShipToAddress] = useState("상세주소");
+
+  const sendDataToServer = async () => {
+    try {
+      const response = await axios.post(
+        "http://development.localhost:8000/api/resource/Sales%20Invoice",
+        {
+          data: {
+            owner: "Administrator",
+            customer: "dongdong",
+            po_no: "",
+            po_date: "",
+            company_address: "",
+            customer_address: "",
+            shipping_address_name: "",
+            grand_total: "",
+            items: [
+              {
+                item_name: "ttttttt",
+                description:
+                  '<div class="ql-editor read-mode"><p>dklasjdfklj</p></div>',
+                qty: 12.0,
+                rate: 5.0,
+                amount: 11.0,
+                income_account: "Salary - T",
+              },
+            ],
+            taxes: [
+              {
+                charge_type: "On Item Quantity",
+                account_head: "Marketing Expenses - T",
+                description: "Marketing Expenses",
+                tax_amount: 140.0,
+              },
+            ],
+          },
+        }
+      );
+
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error sending data to server:", error);
+    }
+  };
 
   const onNextPage = () => {
     navigate("/upload");
@@ -132,7 +163,7 @@ const Scan = () => {
         <ScanTable data={tableData} />
         <ButtonContainer>
           <ScanAgainButton onClick={onNextPage}>Scan Again</ScanAgainButton>
-          <ModifyButton>Save invoice</ModifyButton>
+          <ModifyButton onClick={sendDataToServer}>Save invoice</ModifyButton>
         </ButtonContainer>
       </RightSection>
     </Container>
