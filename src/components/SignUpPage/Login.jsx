@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from "styled-components";
 import { Link } from 'react-router-dom';
 
@@ -107,7 +107,55 @@ export const LoginText = styled.div`
   margin-top: 20px;
 `;
 
+// const Login = () => {
+//   return (
+//     <SignUpContainer>
+//       <LeftSection>
+//         <Title>Need <Highlight>Invoice OCR </Highlight>
+//         for your business?
+//         We will help you.</Title>
+//         <Logo>
+//           <img src="/images/text.magnifyingglass.svg" alt="magnifyingglassImg" />
+//         </Logo>
+//       </LeftSection>
+//       <RightSection>
+//         <SignUpText>Login</SignUpText>
+//         <TextField type="text" placeholder="Email" style={{ marginTop: '35px' }}></TextField>
+//         <TextField type="text" placeholder="Password" style={{ marginTop: '35px', marginBottom: '45px' }}></TextField>
+//         <Link to="/"><LoginButton>Login</LoginButton></Link>
+//       </RightSection>
+//     </SignUpContainer>
+//   );
+// };
+
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = () => {
+    // Make a POST request to the login endpoint with email and password
+    fetch('http://127.0.0.1:8000/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response data as needed
+      console.log(document.cookie);
+      console.log(data);
+    })
+    .catch(error => {
+      // Handle errors
+      console.error('Error:', error);
+    });
+  };
+
   return (
     <SignUpContainer>
       <LeftSection>
@@ -120,12 +168,27 @@ const Login = () => {
       </LeftSection>
       <RightSection>
         <SignUpText>Login</SignUpText>
-        <TextField type="text" placeholder="Email" style={{ marginTop: '35px' }}></TextField>
-        <TextField type="text" placeholder="Password" style={{ marginTop: '35px', marginBottom: '45px' }}></TextField>
-        <Link to="/"><LoginButton>Login</LoginButton></Link>
+        <TextField 
+          type="text" 
+          placeholder="Email" 
+          style={{ marginTop: '35px' }}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField 
+          type="password" 
+          placeholder="Password" 
+          style={{ marginTop: '35px', marginBottom: '45px' }}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Link to="/">
+          <LoginButton onClick={handleLogin}>Login</LoginButton>
+        </Link>
       </RightSection>
     </SignUpContainer>
   );
 };
+
 
 export default Login;
