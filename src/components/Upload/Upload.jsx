@@ -159,20 +159,12 @@ const Upload = () => {
         method: "POST",
         body: formData
       })
-      .then(response => {
-        if (response.ok) {
-          // Handle success response
-          console.log(response.json());
-        } else {
-          // Handle error response
-          throw new Error("File upload failed");
-        }
-      })
-      .then(data => {
+      .then(response => response.json())
+      .then(res => {
         // Handle the JSON response from the server
-        console.log(data);
+        console.log(res);
         // Navigate to the "/scan" route with the uploaded image data
-        navigate("/scan", { state: { image: uploadedImage, name: name } });
+        navigate("/scan", { state: { image: uploadedImage, name: name, data: res } });
       })
       .catch(error => {
         console.error("Error:", error);

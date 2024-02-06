@@ -87,6 +87,7 @@ const Scan = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const uploadedImage = location.state?.image || [];
+  const data = location.state?.data;
 
   const [orderDate, setOrderDate] = useState("1-17-2024");
   const [shipToAddress, setShipToAddress] = useState("상세주소");
@@ -128,7 +129,7 @@ const Scan = () => {
         }
       );
 
-      console.log(response.data);
+      console.log("스캔에서 받은 거" + data);
     } catch (error) {
       console.error("Error sending data to server:", error);
     }
@@ -138,11 +139,7 @@ const Scan = () => {
     navigate("/upload");
   };
 
-  const [tableData, setTableData] = useState([
-    { desc: "hello", qty: 1, price: 1, total: 1.0 },
-    { desc: "hello", qty: 1, price: 1, total: 1.0 },
-    { desc: "hello", qty: 1, price: 1, total: 1.0 },
-  ]);
+  const [tableData, setTableData] = useState(data);
 
   return (
     <Container>
