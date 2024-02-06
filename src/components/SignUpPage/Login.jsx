@@ -117,7 +117,6 @@ const Login = () => {
     // Make a POST request to the login endpoint with email and password
     fetch('http://127.0.0.1:8000/api/login', {
       method: 'POST',
-      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
