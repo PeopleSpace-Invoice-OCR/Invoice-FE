@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const MainBox = styled.div`
@@ -56,8 +56,11 @@ export const InvoiceImg = styled.img`
 const Main = () => {
   const navigate = useNavigate();
 
+	const location = useLocation();
+  const name = location.state ? location.state.name.split('@')[0] : '';
+
   const onNextPage = () => {
-    navigate("/upload");
+    navigate("/upload", { state: { name: name } });
   };
 
   return (
