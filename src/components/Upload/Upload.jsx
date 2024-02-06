@@ -146,13 +146,6 @@ const Upload = () => {
 	const location = useLocation();
   const name = location.state ? location.state.name : '';
 
-  // const onNextPage = () => {
-  //   if (uploadedImage.length > 0) {
-  //     navigate("/scan", { state: { image: uploadedImage, name: name } });
-  //   } else {
-  //     alert("Please upload the invoice file");
-  //   }
-  // };
   const onNextPage = () => {
     if (uploadedImage.length > 0) {
       // Create FormData object
@@ -169,7 +162,7 @@ const Upload = () => {
       .then(response => {
         if (response.ok) {
           // Handle success response
-          return response.json();
+          console.log(response.json());
         } else {
           // Handle error response
           throw new Error("File upload failed");
@@ -179,7 +172,7 @@ const Upload = () => {
         // Handle the JSON response from the server
         console.log(data);
         // Navigate to the "/scan" route with the uploaded image data
-        navigate("/scan", { state: { uploadedImage } });
+        navigate("/scan", { state: { image: uploadedImage, name: name } });
       })
       .catch(error => {
         console.error("Error:", error);
