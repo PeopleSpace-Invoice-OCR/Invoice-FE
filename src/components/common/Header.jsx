@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 function Header() {
 	const location = useLocation();
-  const name = location.state ? location.state.name : "Administrator";
+  const name = location.state ? location.state.name : "";
 
   return (
     <HeaderWrapper>
