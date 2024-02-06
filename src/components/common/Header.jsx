@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 function Header() {
 	const location = useLocation();
-  const name = location.state ? location.state.name.split('@')[0] : JSON.parse(localStorage.getItem('name'));
+  const name = location.state ? location.state.name : "Administrator";
 
   return (
     <HeaderWrapper>

@@ -57,7 +57,7 @@ const Main = () => {
   const navigate = useNavigate();
 
 	const location = useLocation();
-  const name = location.state ? location.state.name.split('@')[0] : '';
+  const name = location.state ? location.state.name : '';
 
   const onNextPage = () => {
     navigate("/upload", { state: { name: name } });

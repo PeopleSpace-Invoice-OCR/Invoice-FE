@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const MainBox = styled.div`
@@ -143,9 +143,12 @@ const Upload = () => {
     noKeyboard: true,
   });
 
+	const location = useLocation();
+  const name = location.state ? location.state.name : '';
+
   const onNextPage = () => {
     if (uploadedImage.length > 0) {
-      navigate("/scan", { state: { uploadedImage } });
+      navigate("/scan", { state: { image: uploadedImage, name: name } });
     } else {
       alert("Please upload the invoice file");
     }
