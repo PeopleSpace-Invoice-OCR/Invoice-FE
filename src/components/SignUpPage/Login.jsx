@@ -133,8 +133,6 @@ const Login = () => {
       name = res.data.full_name;
       // Pass the data when go to the next screen
       navigate("/", { state: { name: name } });
-      // Save user name
-      localStorage.setItem('name', JSON.stringify(name));
     })
     .catch(error => {
       // Handle errors

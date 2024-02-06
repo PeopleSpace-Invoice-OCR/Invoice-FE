@@ -86,7 +86,7 @@ export const ButtonContainer = styled.div`
 const Scan = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const uploadedImage = location.state?.uploadedImage || [];
+  const uploadedImage = location.state?.image || [];
 
   const [orderDate, setOrderDate] = useState("1-17-2024");
   const [shipToAddress, setShipToAddress] = useState("상세주소");
