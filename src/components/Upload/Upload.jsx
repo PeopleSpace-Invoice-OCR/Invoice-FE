@@ -146,13 +146,50 @@ const Upload = () => {
 	const location = useLocation();
   const name = location.state ? location.state.name : '';
 
+  // const onNextPage = () => {
+  //   if (uploadedImage.length > 0) {
+  //     navigate("/scan", { state: { image: uploadedImage, name: name } });
+  //   } else {
+  //     alert("Please upload the invoice file");
+  //   }
+  // };
   const onNextPage = () => {
     if (uploadedImage.length > 0) {
-      navigate("/scan", { state: { image: uploadedImage, name: name } });
+      // Create FormData object
+      const formData = new FormData();
+      
+      // Append the file to the FormData object
+      formData.append("file", uploadedImage[0]);
+  
+      // Make a POST request to the /api/invoice endpoint
+      fetch("http://127.0.0.1:8000/api/invoice", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          // Handle success response
+          return response.json();
+        } else {
+          // Handle error response
+          throw new Error("File upload failed");
+        }
+      })
+      .then(data => {
+        // Handle the JSON response from the server
+        console.log(data);
+        // Navigate to the "/scan" route with the uploaded image data
+        navigate("/scan", { state: { uploadedImage } });
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("File upload failed");
+      });
     } else {
       alert("Please upload the invoice file");
     }
   };
+  
 
   return (
     <MainBox>
