@@ -101,7 +101,7 @@ export const InputField = styled.input`
 const Scan = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const uploadedImage = location.state?.uploadedImage || [];
+  const uploadedImage = location.state?.image || [];
 
   const [orderDate, setOrderDate] = useState("12/5/23");
   const [shipToAddress, setShipToAddress] = useState(

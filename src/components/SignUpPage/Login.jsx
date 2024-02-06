@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { styled } from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const SignUpContainer = styled.div`
     display: flex;
@@ -107,30 +107,11 @@ export const LoginText = styled.div`
   margin-top: 20px;
 `;
 
-// const Login = () => {
-//   return (
-//     <SignUpContainer>
-//       <LeftSection>
-//         <Title>Need <Highlight>Invoice OCR </Highlight>
-//         for your business?
-//         We will help you.</Title>
-//         <Logo>
-//           <img src="/images/text.magnifyingglass.svg" alt="magnifyingglassImg" />
-//         </Logo>
-//       </LeftSection>
-//       <RightSection>
-//         <SignUpText>Login</SignUpText>
-//         <TextField type="text" placeholder="Email" style={{ marginTop: '35px' }}></TextField>
-//         <TextField type="text" placeholder="Password" style={{ marginTop: '35px', marginBottom: '45px' }}></TextField>
-//         <Link to="/"><LoginButton>Login</LoginButton></Link>
-//       </RightSection>
-//     </SignUpContainer>
-//   );
-// };
-
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  var name = "";
 
   const handleLogin = () => {
     // Make a POST request to the login endpoint with email and password
@@ -145,10 +126,12 @@ const Login = () => {
       }),
     })
     .then(response => response.json())
-    .then(data => {
-      // Handle the response data as needed
-      console.log(document.cookie);
-      console.log(data);
+    .then(res => {
+      // Handle the response data
+      console.log(res.data);
+      name = res.data.full_name;
+      // Pass the data when go to the next screen
+      navigate("/", { state: { name: name } });
     })
     .catch(error => {
       // Handle errors
@@ -168,16 +151,16 @@ const Login = () => {
       </LeftSection>
       <RightSection>
         <SignUpText>Login</SignUpText>
-        <TextField 
-          type="text" 
-          placeholder="Email" 
+        <TextField
+          type="text"
+          placeholder="Email"
           style={{ marginTop: '35px' }}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <TextField 
-          type="password" 
-          placeholder="Password" 
+        <TextField
+          type="password"
+          placeholder="Password"
           style={{ marginTop: '35px', marginBottom: '45px' }}
           value={password}
           onChange={(e) => setPassword(e.target.value)}

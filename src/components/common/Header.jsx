@@ -1,8 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 function Header() {
+	const location = useLocation();
+  const name = location.state ? location.state.name : "";
+
   return (
     <HeaderWrapper>
       <Link to="/" className="logo">
@@ -10,12 +12,20 @@ function Header() {
         <div className="logoText">INVOICE OCR</div>
       </Link>
       <nav className="menu">
-        <Link to="/sign-up" className="signup">
-          Sign Up
-        </Link>
-        <Link to="/login" className="login">
-          Login
-        </Link>
+        {name ? (
+          // 데이터가 존재하면 텍스트를 보여줌
+          <span className="nameText">{"#" + name}</span>
+         ) : (
+          // 데이터가 없으면 로그인과 회원가입 버튼을 보여줌
+          <>
+            <Link to="/sign-up" className="signup">
+              Sign Up
+            </Link>
+            <Link to="/login" className="login">
+              Login
+            </Link>
+          </>
+        )}
       </nav>
     </HeaderWrapper>
   );
@@ -67,5 +77,11 @@ const HeaderWrapper = styled.section`
     cursor: pointer;
     font-family: "p-bold";
     text-decoration: none;
+  }
+  .nameText {
+    margin-right: 16px;
+    color: #2D2D2D;
+    font-family: "p-bold";
+    font-size: 20px;
   }
 `;
