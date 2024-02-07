@@ -39,7 +39,11 @@ You can upload your invoices and get the result and save it to the erpnext datab
 - When it's done, you'll automatically go to the next page. (You may have to wait a little bit.)
 
 ### 3. Check and Save invoice information
-<img width="1440" alt="스크린샷 2024-02-07 오전 11 26 19" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/9f794fe6-8440-4b21-ba9a-df6f73965ed8">
+
+<img width="1440" alt="스크린샷 2024-02-07 오후 2 25 09" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/98d5e3ac-f25d-414e-a9ef-243921a31ec7">
+<img width="1440" alt="스크린샷 2024-02-07 오후 2 25 22" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/ca9cb28e-bb84-4a2c-95db-de06db901410">
+<img width="1440" alt="스크린샷 2024-02-07 오후 2 25 43" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/b21a0b02-4570-478c-a9ed-18bceafa0cc8">
+<img width="1440" alt="스크린샷 2024-02-07 오후 2 25 51" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/7dc0ac23-f34f-4b2f-9bb0-98ccc9a69422">
 
 - You can check the OCR scan results and correct the incorrect values.
 - Click the `Save invoice` button to save the final value to the database of the erpnext.
