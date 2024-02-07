@@ -131,7 +131,7 @@ const Upload = () => {
   const [uploadedImage, setUploadedImage] = useState([]);
   const navigate = useNavigate();
 
-  // Dropzone 설정 함수들
+  // Dropzone Setting
   const onDrop = (acceptedFiles) => {
     setUploadedImage(acceptedFiles);
   };
@@ -143,46 +143,47 @@ const Upload = () => {
     noKeyboard: true,
   });
 
-	const location = useLocation();
-  const name = location.state ? location.state.name : '';
+  const location = useLocation();
+  const name = location.state ? location.state.name : "";
 
   const onNextPage = () => {
+    // navigate("/scan", { state: { image: uploadedImage, name: name } });
+
     if (uploadedImage.length > 0) {
       // Create FormData object
       const formData = new FormData();
-      
+
       // Append the file to the FormData object
       formData.append("file", uploadedImage[0]);
-  
+
       // Make a POST request to the /api/invoice endpoint
       fetch("http://127.0.0.1:8000/api/invoice", {
         method: "POST",
-        body: formData
+        body: formData,
       })
-      .then(response => {
-        if (response.ok) {
-          // Handle success response
-          console.log(response.json());
-        } else {
-          // Handle error response
-          throw new Error("File upload failed");
-        }
-      })
-      .then(data => {
-        // Handle the JSON response from the server
-        console.log(data);
-        // Navigate to the "/scan" route with the uploaded image data
-        navigate("/scan", { state: { image: uploadedImage, name: name } });
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        alert("File upload failed");
-      });
+        .then((response) => {
+          if (response.ok) {
+            // Handle success response
+            console.log(response.json());
+          } else {
+            // Handle error response
+            throw new Error("File upload failed");
+          }
+        })
+        .then((data) => {
+          // Handle the JSON response from the server
+          console.log(data);
+          // Navigate to the "/scan" route with the uploaded image data
+          navigate("/scan", { state: { image: uploadedImage, name: name } });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("File upload failed");
+        });
     } else {
       alert("Please upload the invoice file");
     }
   };
-  
 
   return (
     <MainBox>

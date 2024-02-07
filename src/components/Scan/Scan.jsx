@@ -117,28 +117,27 @@ const Scan = () => {
         {
           data: {
             owner: "Administrator",
-            customer: "dongdong",
-            po_no: "",
-            po_date: "",
-            company_address: "",
-            customer_address: "",
-            shipping_address_name: "",
-            grand_total: "",
+            customer: "lee",
+            po_no: "123",
+            po_date: "2019-06-03 14:19:00.281026",
+            company_address: "Hello-Billing",
+            customer_address: "Hello-Billing",
+            shipping_address_name: "Hello-Billing",
+            grand_total: "12",
             items: [
               {
                 item_name: "ttttttt",
-                description:
-                  '<div class="ql-editor read-mode"><p>dklasjdfklj</p></div>',
+                description: '<div class="ql-editor read-mode">hello</div>',
                 qty: 12.0,
                 rate: 5.0,
                 amount: 11.0,
-                income_account: "Salary - T",
+                income_account: "Marketing Expenses - P",
               },
             ],
             taxes: [
               {
                 charge_type: "On Item Quantity",
-                account_head: "Marketing Expenses - T",
+                account_head: "Marketing Expenses - P",
                 description: "Marketing Expenses",
                 tax_amount: 140.0,
               },
