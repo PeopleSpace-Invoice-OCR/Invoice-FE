@@ -133,6 +133,12 @@ const Scan = () => {
               },
             ],
           },
+        },
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
         }
       );
       alert("Saved.");
