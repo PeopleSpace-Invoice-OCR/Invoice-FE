@@ -170,25 +170,6 @@ const Upload = () => {
             state: { image: uploadedImage, name: name, data: res },
           });
         })
-        .then((response) => {
-          if (response.ok) {
-            // Handle success response
-            console.log(response.json());
-          } else {
-            // Handle error response
-            throw new Error("File upload failed");
-          }
-        })
-        .then((data) => {
-          // Handle the JSON response from the server
-          console.log(data);
-          // Navigate to the "/scan" route with the uploaded image data
-          navigate("/scan", { state: { image: uploadedImage, name: name } });
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("File upload failed");
-        });
     } else {
       alert("Please upload the invoice file");
     }
