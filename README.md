@@ -38,10 +38,11 @@ You can upload your invoices and get the result and save it to the erpnext datab
 - Click the `Get information` button to start scanning the invoice through the OCR.
 - When it's done, you'll automatically go to the next page. (You may have to wait a little bit.)
 
-### 3. Scan invoice
-- 
-### 4. Save invoice information
-- 
+### 3. Check and Save invoice information
+<img width="1440" alt="스크린샷 2024-02-07 오전 11 26 19" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/9f794fe6-8440-4b21-ba9a-df6f73965ed8">
+
+- You can check the OCR scan results and correct the incorrect values.
+- Click the `Save invoice` button to save the final value to the database of the erpnext.
 
 ## Code Description - BackEnd
 [BackEnd README](https://github.com/PeopleSpace-Invoice-OCR/Invoice-BE/blob/main/README.md)
