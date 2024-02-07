@@ -18,9 +18,6 @@ function Header() {
          ) : (
           // 데이터가 없으면 로그인과 회원가입 버튼을 보여줌
           <>
-            <Link to="/sign-up" className="signup">
-              Sign Up
-            </Link>
             <Link to="/login" className="login">
               Login
             </Link>
@@ -61,11 +58,6 @@ const HeaderWrapper = styled.section`
   .menu {
     margin-left: auto;
     margin-right: 170px;
-  }
-  .signup {
-    color: #000000;
-    font-family: "p-bold";
-    text-decoration: none;
   }
   .login {
     padding: 10px 35px;
