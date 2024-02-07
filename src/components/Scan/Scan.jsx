@@ -102,10 +102,11 @@ const Scan = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const uploadedImage = location.state?.image || [];
+  const data = location.state?.data;
 
-  const [orderDate, setOrderDate] = useState("12/5/23");
+  const [orderDate, setOrderDate] = useState(data.po_date);
   const [shipToAddress, setShipToAddress] = useState(
-    "DANIEL LEE \n 1691 KETTERING ST \n CA 92614\n IRVINE \n 949-829-1691"
+    data.customer_address
   );
 
   const [isModifying, setIsModifying] = useState(false);
@@ -147,7 +148,6 @@ const Scan = () => {
         }
       );
 
-      console.log(response.data);
     } catch (error) {
       console.error("Error sending data to server:", error);
     }
@@ -157,7 +157,9 @@ const Scan = () => {
     navigate("/upload");
   };
 
+  // const [tableData, setTableData] = useState(data);
   const handleModify = () => {
+    console.log("스캔에서 받은 거" + data.owner);
     setIsModifying(!isModifying);
   };
 
@@ -167,20 +169,12 @@ const Scan = () => {
     setIsModifying(false);
   };
 
-  const [tableData, setTableData] = useState([
-    { desc: "STEERING CPLR,GERM,T1,3", qty: 1, price: 22.95, total: 22.95 },
-    { desc: "URETN,AXLE TUBE SL, BJ,SET", qty: 1, price: 18.95, total: 18.95 },
-    { desc: "FRONT WHL SEAL,68.5-,EA", qty: 2, price: 2.99, total: 5.98 },
-    { desc: "ECCENTRC WSHR BJ", qty: 2, price: 2.59, total: 5.18 },
-    { desc: "CV FLANGE SEAL KT,T1&3", qty: 2, price: 8.49, total: 16.98 },
-    { desc: "PUG WIRES,EMPL,USA,GRY", qty: 1, price: 36.95, total: 36.95 },
-    { desc: "VALVE,FUEL SHUT OFF", qty: 1, price: 9.95, total: 9.95 },
-  ]);
+  const [tableData, setTableData] = useState(data.items);
 
   const [price, setPrice] = useState({
-    subTotal: 116.94,
-    tax: 11.98,
-    orderTotal: 128.92,
+    subTotal: data.grand_total,
+    tax: data.taxes[data.taxes.length - 1].tax_amount, // 임의로 맨 마지막 값을 최종 텍스로 두었음
+    orderTotal: parseFloat(data.grand_total) + parseFloat(data.taxes[data.taxes.length - 1].tax_amount)
   });
 
   const handleTableDataChange = (index, field, value) => {
@@ -197,7 +191,7 @@ const Scan = () => {
       <RightSection>
         <Title>Your Invoice</Title>
         <Description>
-          Order Date:
+        Invoice Issue Date:
           {isModifying ? (
             <InputField
               type="text"
@@ -209,7 +203,7 @@ const Scan = () => {
           )}
         </Description>
         <Description>
-          Ship To:
+          Customer Address:
           <br />
           {isModifying ? (
             <InputField

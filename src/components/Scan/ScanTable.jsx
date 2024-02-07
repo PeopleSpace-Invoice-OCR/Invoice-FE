@@ -61,11 +61,11 @@ const ScanTable = ({ data, price, onTableChange, setPrice, isModifying }) => {
               {isModifying ? (
                 <InputField
                   type="text"
-                  value={item.desc}
-                  onChange={(e) => onTableChange(index, "desc", e.target.value)}
+                  value={item.item_name}
+                  onChange={(e) => onTableChange(index, "item_name", e.target.value)}
                 />
               ) : (
-                <span>{item.desc}</span>
+                <span>{item.item_name}</span>
               )}
             </TD>
             <TD>
@@ -86,28 +86,28 @@ const ScanTable = ({ data, price, onTableChange, setPrice, isModifying }) => {
               {isModifying ? (
                 <InputField
                   type="number"
-                  value={item.price}
+                  value={item.rate}
                   onChange={(e) =>
-                    onTableChange(index, "price", parseFloat(e.target.value))
+                    onTableChange(index, "rate", parseFloat(e.target.value))
                   }
                   style={{ width: "5rem" }}
                 />
               ) : (
-                <span>{item.price}</span>
+                <span>{item.rate}</span>
               )}
             </TD>
             <TD>
               {isModifying ? (
                 <InputField
                   type="number"
-                  value={item.total}
+                  value={item.amount}
                   onChange={(e) =>
-                    onTableChange(index, "total", parseFloat(e.target.value))
+                    onTableChange(index, "amount", parseFloat(e.target.value))
                   }
                   style={{ width: "5rem" }}
                 />
               ) : (
-                <span>{item.total}</span>
+                <span>{item.amount}</span>
               )}
             </TD>
           </tr>
