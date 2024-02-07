@@ -46,7 +46,7 @@ export const Description = styled.div`
 `;
 
 export const SaveButton = styled.button`
-  width: 42vh;
+  width: 22vh;
   height: 7vh;
   padding: 10px 12px;
   font-size: 18px;
@@ -57,6 +57,7 @@ export const SaveButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   margin-top: 20px;
+  margin-left: 20px;
   transition: background-color 0.3s ease;
 `;
 
@@ -69,12 +70,12 @@ export const ModifyButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   margin-top: 20px;
-  width: 42vh;
+  width: 22vh;
   height: 7vh;
   padding: 10px 12px;
   transition: background-color 0.3s ease;
   border-radius: 8px;
-  margin-left: 15px;
+  margin-left: -325px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -110,40 +111,50 @@ const Scan = () => {
   const [isModifying, setIsModifying] = useState(false);
 
   const sendDataToServer = async () => {
+    let modifiedData = tableData.map(obj => {
+      return { ...obj, "income_account": "Administrative Expenses - P", "description": "<div class=\"ql-editor read-mode\"><p>hi</p></div>" }
+    }) 
+
+    const requestData = {
+      "data": { 
+        "owner": "Administrator",
+        "customer": "winter",
+        "po_no": "123",
+        "po_date": orderDate,
+        "company_address": "PeopleSpace-Billing",
+        "customer_address": "PeopleSpace-Billing",
+        "shipping_address_name": "PeopleSpace-Billing",
+        "grand_total": "0",
+        "items": modifiedData,
+        "taxes": [
+            {
+                "charge_type": "On Item Quantity",
+                "account_head": "Marketing Expenses - P",
+                "description": "Marketing Expenses",
+                "tax_amount": 140.0
+            }
+        ]
+    }
+    }
+    console.log(requestData);
+
     try {
       const response = await axios.post(
         "http://development.localhost:8000/api/resource/Sales%20Invoice",
-        {
-          data: {
-            owner: "Administrator",
-            customer: "lee",
-            po_no: "123",
-            po_date: orderDate,
-            company_address: "Hello-Billing",
-            customer_address: "Hello-Billing",
-            shipping_address_name: "Hello-Billing",
-            grand_total: "0",
-            items: tableData,
-            taxes: [
-              {
-                charge_type: "On Item Quantity",
-                account_head: "Marketing Expenses - P",
-                description: "Marketing Expenses",
-                tax_amount: 10.0,
-              },
-            ],
-          },
-        },
+        requestData,
         {
           headers: {
-            Accept: "application/json",
+            "Accept": "application/json",
             "Content-Type": "application/json",
+            "Authorization": `token ${process.env.REACT_APP_API_KEY}:${process.env.REACT_APP_API_SECRET}`
           },
         }
       );
-      alert("Saved.");
+      alert("Data saved in to the erpnext");
     } catch (error) {
       console.error("Error sending data to server:", error);
+
+      alert("Failed to save data");
     }
   };
 
