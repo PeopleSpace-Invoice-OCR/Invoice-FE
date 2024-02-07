@@ -105,9 +105,7 @@ const Scan = () => {
   const data = location.state?.data;
 
   const [orderDate, setOrderDate] = useState(data.po_date);
-  const [shipToAddress, setShipToAddress] = useState(
-    data.customer_address
-  );
+  const [shipToAddress, setShipToAddress] = useState(data.customer_address);
 
   const [isModifying, setIsModifying] = useState(false);
 
@@ -120,33 +118,24 @@ const Scan = () => {
             owner: "Administrator",
             customer: "lee",
             po_no: "123",
-            po_date: "2019-06-03 14:19:00.281026",
+            po_date: orderDate,
             company_address: "Hello-Billing",
             customer_address: "Hello-Billing",
             shipping_address_name: "Hello-Billing",
-            grand_total: "12",
-            items: [
-              {
-                item_name: "ttttttt",
-                description: '<div class="ql-editor read-mode">hello</div>',
-                qty: 12.0,
-                rate: 5.0,
-                amount: 11.0,
-                income_account: "Marketing Expenses - P",
-              },
-            ],
+            grand_total: "0",
+            items: tableData,
             taxes: [
               {
                 charge_type: "On Item Quantity",
                 account_head: "Marketing Expenses - P",
                 description: "Marketing Expenses",
-                tax_amount: 140.0,
+                tax_amount: 10.0,
               },
             ],
           },
         }
       );
-
+      alert("Saved.");
     } catch (error) {
       console.error("Error sending data to server:", error);
     }
@@ -173,7 +162,9 @@ const Scan = () => {
   const [price, setPrice] = useState({
     subTotal: data.grand_total,
     tax: data.taxes[data.taxes.length - 1].tax_amount, // 임의로 맨 마지막 값을 최종 텍스로 두었음
-    orderTotal: parseFloat(data.grand_total) + parseFloat(data.taxes[data.taxes.length - 1].tax_amount)
+    orderTotal:
+      parseFloat(data.grand_total) +
+      parseFloat(data.taxes[data.taxes.length - 1].tax_amount),
   });
 
   const handleTableDataChange = (index, field, value) => {
@@ -190,7 +181,7 @@ const Scan = () => {
       <RightSection>
         <Title>Your Invoice</Title>
         <Description>
-        Invoice Issue Date:
+          Invoice Issue Date:
           {isModifying ? (
             <InputField
               type="text"
