@@ -159,7 +159,18 @@ const Upload = () => {
       // Make a POST request to the /api/invoice endpoint
       fetch("http://127.0.0.1:8000/api/invoice", {
         method: "POST",
+<<<<<<< HEAD
         body: formData,
+=======
+        body: formData
+      })
+      .then(response => response.json())
+      .then(res => {
+        // Handle the JSON response from the server
+        console.log(res);
+        // Navigate to the "/scan" route with the uploaded image data
+        navigate("/scan", { state: { image: uploadedImage, name: name, data: res } });
+>>>>>>> main
       })
         .then((response) => {
           if (response.ok) {
