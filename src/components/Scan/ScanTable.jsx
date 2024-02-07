@@ -22,7 +22,28 @@ export const TH = styled.th`
   text-transform: uppercase;
 `;
 
-const ScanTable = ({ data }) => {
+export const InputField = styled.input`
+  border: none;
+  outline: none;
+  padding: 0.3rem;
+  font-family: "p-reg";
+  color: black;
+  background-color: transparent;
+`;
+
+const ScanTable = ({ data, price, onTableChange, setPrice, isModifying }) => {
+  const setSubTotal = (newSubTotal) => {
+    setPrice((prevPrice) => ({ ...prevPrice, subTotal: newSubTotal }));
+  };
+
+  const setTax = (newSubTotal) => {
+    setPrice((prevPrice) => ({ ...prevPrice, tax: newSubTotal }));
+  };
+
+  const setOrderTotal = (newSubTotal) => {
+    setPrice((prevPrice) => ({ ...prevPrice, orderTotal: newSubTotal }));
+  };
+
   return (
     <TableBody>
       <thead>
@@ -36,19 +57,113 @@ const ScanTable = ({ data }) => {
       <tbody>
         {data.map((item, index) => (
           <tr key={index}>
-            <TD>{item.desc}</TD>
-            <TD>{item.qty}</TD>
-            <TD>{item.price}</TD>
-            <TD>{item.total}</TD>
+            <TD>
+              {isModifying ? (
+                <InputField
+                  type="text"
+                  value={item.item_name}
+                  onChange={(e) => onTableChange(index, "item_name", e.target.value)}
+                />
+              ) : (
+                <span>{item.item_name}</span>
+              )}
+            </TD>
+            <TD>
+              {isModifying ? (
+                <InputField
+                  type="number"
+                  value={item.qty}
+                  onChange={(e) =>
+                    onTableChange(index, "qty", parseInt(e.target.value, 10))
+                  }
+                  style={{ width: "3rem" }}
+                />
+              ) : (
+                <span>{item.qty}</span>
+              )}
+            </TD>
+            <TD>
+              {isModifying ? (
+                <InputField
+                  type="number"
+                  value={item.rate}
+                  onChange={(e) =>
+                    onTableChange(index, "rate", parseFloat(e.target.value))
+                  }
+                  style={{ width: "5rem" }}
+                />
+              ) : (
+                <span>{item.rate}</span>
+              )}
+            </TD>
+            <TD>
+              {isModifying ? (
+                <InputField
+                  type="number"
+                  value={item.amount}
+                  onChange={(e) =>
+                    onTableChange(index, "amount", parseFloat(e.target.value))
+                  }
+                  style={{ width: "5rem" }}
+                />
+              ) : (
+                <span>{item.amount}</span>
+              )}
+            </TD>
           </tr>
         ))}
       </tbody>
       <tfoot>
         <tr>
           <TH colSpan="3" style={{ textAlign: "left", paddingLeft: "1rem" }}>
+            Sub Total
+          </TH>
+          <TH>
+            {isModifying ? (
+              <InputField
+                type="number"
+                value={price.subTotal}
+                onChange={(e) => setSubTotal(parseFloat(e.target.value))}
+                style={{ width: "5rem" }}
+              />
+            ) : (
+              <span>{price.subTotal}</span>
+            )}
+          </TH>
+        </tr>
+        <tr>
+          <TH colSpan="3" style={{ textAlign: "left", paddingLeft: "1rem" }}>
+            Tax
+          </TH>
+          <TH>
+            {isModifying ? (
+              <InputField
+                type="number"
+                value={price.tax}
+                onChange={(e) => setTax(parseFloat(e.target.value))}
+                style={{ width: "5rem" }}
+              />
+            ) : (
+              <span>{price.tax}</span>
+            )}
+          </TH>
+        </tr>
+        <tr>
+          <TH colSpan="3" style={{ textAlign: "left", paddingLeft: "1rem" }}>
             Order Total
           </TH>
-          <TH>0</TH>
+          <TH>
+            {isModifying ? (
+              <InputField
+                type="number"
+                value={price.orderTotal}
+                onChange={(e) => setOrderTotal(parseFloat(e.target.value))}
+                style={{ width: "5rem" }}
+              />
+            ) : (
+              <span>{price.orderTotal}</span>
+            )}
+          </TH>
         </tr>
       </tfoot>
     </TableBody>

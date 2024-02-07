@@ -42,9 +42,10 @@ export const Description = styled.div`
   font-family: "p-reg";
   font-weight: 400;
   line-height: 40px;
+  white-space: pre-line;
 `;
 
-export const ScanAgainButton = styled.button`
+export const SaveButton = styled.button`
   width: 42vh;
   height: 7vh;
   padding: 10px 12px;
@@ -83,14 +84,32 @@ export const ButtonContainer = styled.div`
   margin-top: 30px;
 `;
 
+export const InputField = styled.input`
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  padding: 5px;
+  font-size: 16px;
+  font-family: "p-reg";
+  color: black;
+
+  &:focus {
+    border-bottom: 2px solid #5b86e5;
+  }
+`;
+
 const Scan = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const uploadedImage = location.state?.image || [];
   const data = location.state?.data;
 
-  const [orderDate, setOrderDate] = useState("1-17-2024");
-  const [shipToAddress, setShipToAddress] = useState("상세주소");
+  const [orderDate, setOrderDate] = useState(data.po_date);
+  const [shipToAddress, setShipToAddress] = useState(
+    data.customer_address
+  );
+
+  const [isModifying, setIsModifying] = useState(false);
 
   const sendDataToServer = async () => {
     try {
@@ -129,7 +148,6 @@ const Scan = () => {
         }
       );
 
-      console.log("스캔에서 받은 거" + data);
     } catch (error) {
       console.error("Error sending data to server:", error);
     }
@@ -139,7 +157,31 @@ const Scan = () => {
     navigate("/upload");
   };
 
-  const [tableData, setTableData] = useState(data);
+  // const [tableData, setTableData] = useState(data);
+  const handleModify = () => {
+    console.log("스캔에서 받은 거" + data.owner);
+    setIsModifying(!isModifying);
+  };
+
+  const handleSaveChanges = () => {
+    alert("Your changes have been saved.");
+
+    setIsModifying(false);
+  };
+
+  const [tableData, setTableData] = useState(data.items);
+
+  const [price, setPrice] = useState({
+    subTotal: data.grand_total,
+    tax: data.taxes[data.taxes.length - 1].tax_amount, // 임의로 맨 마지막 값을 최종 텍스로 두었음
+    orderTotal: parseFloat(data.grand_total) + parseFloat(data.taxes[data.taxes.length - 1].tax_amount)
+  });
+
+  const handleTableDataChange = (index, field, value) => {
+    const newData = [...tableData];
+    newData[index][field] = value;
+    setTableData(newData);
+  };
 
   return (
     <Container>
@@ -149,18 +191,48 @@ const Scan = () => {
       <RightSection>
         <Title>Your Invoice</Title>
         <Description>
-          Order Date:
-          {orderDate}
+        Invoice Issue Date:
+          {isModifying ? (
+            <InputField
+              type="text"
+              value={orderDate}
+              onChange={(e) => setOrderDate(e.target.value)}
+            />
+          ) : (
+            <span>{orderDate}</span>
+          )}
         </Description>
         <Description>
-          Ship To:
+          Customer Address:
           <br />
-          {shipToAddress}
+          {isModifying ? (
+            <InputField
+              type="text"
+              value={shipToAddress}
+              onChange={(e) => setShipToAddress(e.target.value)}
+            />
+          ) : (
+            <span>{shipToAddress}</span>
+          )}
         </Description>
-        <ScanTable data={tableData} />
+        <ScanTable
+          data={tableData}
+          price={price}
+          onTableChange={handleTableDataChange}
+          setPrice={setPrice}
+          isModifying={isModifying}
+        />
         <ButtonContainer>
-          <ScanAgainButton onClick={onNextPage}>Scan Again</ScanAgainButton>
-          <ModifyButton onClick={sendDataToServer}>Save invoice</ModifyButton>
+          {isModifying ? (
+            <ModifyButton onClick={handleSaveChanges}>
+              Save Changes
+            </ModifyButton>
+          ) : (
+            <ModifyButton onClick={handleModify}>
+              Modify Information
+            </ModifyButton>
+          )}
+          <SaveButton onClick={sendDataToServer}>Save invoice</SaveButton>
         </ButtonContainer>
       </RightSection>
     </Container>
