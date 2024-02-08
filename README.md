@@ -15,7 +15,7 @@ You can upload your invoices and get the result and save it to the erpnext datab
 
 ## 🗺️ Page Description
 ### 0. Main Page
-<img width="1440" alt="스크린샷 2024-02-07 오전 10 59 26" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/40dc0b7a-a41d-477d-9d8d-35bc08e4cc54">
+<img width="1440" alt="스크린샷 2024-02-07 오후 4 02 41" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/8c243fd6-e15a-4c7e-809b-975444e4bf45">
 
 - If you click the `Login` button, you can login to this website.
 - If you click the `Get Started` button, you can start to upload your invoice.
@@ -24,14 +24,13 @@ You can upload your invoices and get the result and save it to the erpnext datab
 ### 1. Login
 <img width="1440" alt="스크린샷 2024-02-07 오전 10 56 35" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/9791f36c-378e-476d-81e4-7926d80d31af">  
 
-- You can login this page using the account of erpnext.
+- You can login this page **using the account of erpnext**.
 - Just enter your email and password.
 
 ### 2. Upload invoice
-<img width="1440" alt="스크린샷 2024-02-07 오전 11 06 52" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/cd125e07-e25c-41b1-a592-1d58c8591483">  
-<img width="1440" alt="스크린샷 2024-02-07 오전 11 11 35" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/14b0ee70-4708-4df8-863f-2e6ea7e605b0">
-<img width="1440" alt="스크린샷 2024-02-07 오전 11 08 40" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/6f81d4b2-bfd9-4ed2-accb-f73209374b45">
-
+<img width="1440" alt="스크린샷 2024-02-07 오후 3 58 28" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/5ef03268-cb74-4f12-a41d-22447023d324">
+<img width="1440" alt="스크린샷 2024-02-07 오후 3 58 42" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/071b2900-70cc-471d-9d80-661ce6986c7e">
+<img width="1440" alt="스크린샷 2024-02-07 오후 3 58 53" src="https://github.com/PeopleSpace-Invoice-OCR/Invoice-FE/assets/87434861/2576b0cc-8a0f-4228-93db-4155f4cf4e1f">
 
 - You can upload your invoice just **drag and drop** the image file. (Please upload one image at a time)
 - If you want to switch to another file, just click the `Reset` button.
